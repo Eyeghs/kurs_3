@@ -1,6 +1,6 @@
 import sys
 import sys
-from datetime import datetime
+import pytest
 sys.path.insert(0, '../')
 
 from src.project import open_file, Operations, Operation, is_supported_card, mask_card, mask_bank
@@ -85,3 +85,6 @@ def test_operations_manager_print_last_5_operations(capsys):
     operations_manager.print_last_5_operations()
     assert operations_manager.operations == [operation5, operation4, operation3, operation2, operation1]
     assert len(operations_manager.operations) == 5
+    
+if __name__ == '__main__':
+    pytest.main()
