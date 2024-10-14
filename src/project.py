@@ -58,16 +58,16 @@ def mask_card(transaction_info):
     первые 4 и последние 4 цифры.
     """
     if transaction_info[1].isdigit():
-        return f"{transaction_info[0]} {transaction_info[1][0:4]} {transaction_info[1][4:6]}** **** {transaction_info[1][12:16]}"
+        return f"{transaction_info[0]} {transaction_info[1][0:4]} {transaction_info[1][4:6]}** **** {transaction_info[1][-4:]}"
     else:
-        return f"{transaction_info[0]} {transaction_info[1]} {transaction_info[2][0:4]} {transaction_info[2][4:6]}** **** {transaction_info[2][12:16]}"
+        return f"{transaction_info[0]} {transaction_info[1]} {transaction_info[2][0:4]} {transaction_info[2][4:6]}** **** {transaction_info[2][-4:]}"
 
 def mask_bank(transaction_info):
     """
     Метод маскирует информацию о банковском счете, оставляя 
     только 4 последние цифры.
     """
-    return f"{transaction_info[0]} **{transaction_info[1][16:20]}"
+    return f"{transaction_info[0]} **{transaction_info[1][-4:]}"
 
 class Operations():
     """
@@ -81,10 +81,13 @@ class Operations():
 
     def add_operation(self, operation):
         self.operations.append(operation)
-
-    def get_all_operations(self):
-        return self.operations
      
+    def sort_operations_by_date(self):
+        """
+        Метод сортирует список операций по дате.
+        В результате списка операций будет отсортирован по дате,
+        начиная с последней операции.
+        """
     def sort_operations_by_date(self):
         def convert_date_to_string(operation):
             original_date = operation.date
@@ -144,7 +147,10 @@ for item in operations_list: #Пропускаем отклоненные опе
 Operations_manager.sort_operations_by_date() #Сортируем список по дате.
 Operations_manager.print_last_5_operations() #Выводим последние 5 операций.
 
-
+if '13.11.2019' < '13.12.2019':
+    print('True')
+else:
+    print('False')
 # Пример вывода для одной операции:
 #14.10.2018 Перевод организации
 #Visa Platinum 7000 79** **** 6361 -> Счет **9638
