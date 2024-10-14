@@ -147,10 +147,7 @@ for item in operations_list: #Пропускаем отклоненные опе
 Operations_manager.sort_operations_by_date() #Сортируем список по дате.
 Operations_manager.print_last_5_operations() #Выводим последние 5 операций.
 
-if '13.11.2019' < '13.12.2019':
-    print('True')
-else:
-    print('False')
+
 # Пример вывода для одной операции:
 #14.10.2018 Перевод организации
 #Visa Platinum 7000 79** **** 6361 -> Счет **9638
